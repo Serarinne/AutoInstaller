@@ -95,7 +95,7 @@ wget -O /etc/nginx/conf.d/vps.conf "${serverURL}/vps.conf"
 apt -y install vnstat
 /etc/init.d/vnstat restart
 apt -y install libsqlite3-dev
-wget ${serverDomain}/vnstat-2.6.tar.gz
+wget ${serverURL}/vnstat-2.6.tar.gz
 tar zxvf vnstat-2.6.tar.gz
 cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install
