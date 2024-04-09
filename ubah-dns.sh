@@ -93,7 +93,7 @@ sleep 1
 fi
 fi
 clear
-dns
+ubah-dns
 ;;
 4)
 clear
