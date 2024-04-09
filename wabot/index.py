@@ -82,5 +82,5 @@ def index():
 if __name__ == '__main__':
     set_hook()
     port = os.getenv('PORT') or (443 if os.getenv('BOT_URL', '').startswith('https:') else 80)
-    app.run(host='43.228.212.201', port=port, debug=False)
+    app.run(host='35.240.234.98', port=port, debug=False)
 
