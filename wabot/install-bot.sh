@@ -15,6 +15,7 @@ mkdir /root/wabot
 cd /root/wabot
 wget ${serverURL}/index.py && chmod +x index.py
 wget ${serverURL}/requirements.txt && chmod +x requirements.txt
+wget ${serverURL}/.env && chmod +x .env
 
 cd /usr/bin
 wget -O bot-tambah-akun "${serverURL}/bot-tambah-akun.sh" && chmod +x bot-tambah-akun
