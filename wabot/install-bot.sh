@@ -19,5 +19,21 @@ wget ${serverURL}/requirements.txt && chmod +x requirements.txt
 cd /usr/bin
 wget -O bot-tambah-akun "${serverURL}/bot-tambah-akun.sh" && chmod +x bot-tambah-akun
 
+cat > /etc/systemd/system/wabot.service <<-END
+[Unit]
+Description=Run bot WA
+
+[Service]
+ExecStart=nohup python3 /root/wabot/index.py &
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+END
+
+chmod +x /etc/systemd/system/wabot.service
 cd /etc/systemd/system
-wget ${serverURL}/wabot.service && chmod +x wabot.service
+systemctl enable wabot.service
+systemctl start wabot.service
+systemctl restart wabot.service
