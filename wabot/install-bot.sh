@@ -19,6 +19,11 @@ wget ${serverURL}/requirements.txt && chmod +x requirements.txt
 cd /usr/bin
 wget -O bot-tambah-akun "${serverURL}/bot-tambah-akun.sh" && chmod +x bot-tambah-akun
 
+apt install python3-pip
+pip install Flask
+pip install requests
+pip install jsonify
+
 cat > /etc/systemd/system/wabot.service <<-END
 [Unit]
 Description=Run bot WA
