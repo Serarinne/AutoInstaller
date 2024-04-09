@@ -24,7 +24,7 @@ pip install Flask
 pip install requests
 pip install jsonify
 pip install requests-toolbelt
-pip install dotenv
+pip install python-dotenv
 
 cat > /etc/systemd/system/wabot.service <<-END
 [Unit]
