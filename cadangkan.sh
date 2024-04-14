@@ -27,7 +27,7 @@ echo ""
 echo -e "IP (${serverIP})"
 echo ""
 echo -e "${link}"
-curl -s -X POST https://api.telegram.org/bot6741600880:AAFFeMuKM332E1K1j8mpokmKSzadLRbL0Vg/sendMessage -d chat_id="6933643663" -d text="${date} - ${link}" > /dev/null
+curl -s -X POST https://api.telegram.org/bot6741600880:AAFFeMuKM332E1K1j8mpokmKSzadLRbL0Vg/sendMessage -d chat_id="6933643663" -d text="{$serverDomain} ${date} - ${link}" > /dev/null
 echo ""
 rm -rf /root/backup
 rm -r /root/$serverIP-$date-$serverDomain.zip
