@@ -58,17 +58,16 @@ def handle_new_messages():
             sender = {'to': message.get('chat_id')}
             command_input = message.get('text', {}).get('body', '').strip()
 
-            if command_input.startswith("s1 buat "):
+            if command_input.startswith("s2 buat "):
                 xew = subprocess.run(['bot-tambah-akun',command_input[6:].title().replace(" ","")], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
-            else if command_input.startswith("s1 pengguna"):
+            else if command_input.startswith("s2 pengguna"):
                 xew = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
             else:
-                sender['body'] = 'Perintah salah'
-                endpoint = 'messages/text'
+                return 'Ok', 200
 
         if endpoint is None:
             return 'Ok', 200
