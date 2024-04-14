@@ -9,6 +9,7 @@ echo "Nama sudah digunakan"
 else
 masaaktif=30
 uuid=$(cat /proc/sys/kernel/random/uuid)
+bughost="quiz.vidio.com"
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 sed -i '/#VMESS$/a\### '"$user $exp"'\
@@ -18,7 +19,7 @@ cat> /usr/local/etc/xray/$user.json << EOF
       {
       "v": "2",
       "ps": "Server3 ${user} ${exp}",
-      "add": "${serverDomain}",
+      "add": "${bughost}",
       "port": "80",
       "id": "${uuid}",
       "aid": "0",
