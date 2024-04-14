@@ -19,6 +19,7 @@ wget ${serverURL}/.env && chmod +x .env
 
 cd /usr/bin
 wget -O bot-tambah-akun "${serverURL}/bot-tambah-akun.sh" && chmod +x bot-tambah-akun
+wget -O bot-cek-pengguna "${serverURL}/bot-cek-pengguna.sh" && chmod +x bot-cek-pengguna
 
 apt install python3-pip
 pip install Flask
