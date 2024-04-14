@@ -66,6 +66,8 @@ def handle_new_messages():
                 xew = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
+            else if command_input.startswith("s2 restart"):
+                subprocess.run(['reboot'], capture_output=True, text=True)
             else:
                 return 'Ok', 200
 
