@@ -63,7 +63,7 @@ def handle_new_messages():
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
             else if command_input.startswith("s1 pengguna"):
-                xew = subprocess.run(['bot-tambah-akun',command_input[6:].title().replace(" ","")], capture_output=True, text=True)
+                xew = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
             else:
