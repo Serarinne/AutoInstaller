@@ -27,6 +27,7 @@ pip install requests
 pip install jsonify
 pip install requests-toolbelt
 pip install python-dotenv
+pip install spur
 
 cat > /etc/systemd/system/wabot.service <<-END
 [Unit]
