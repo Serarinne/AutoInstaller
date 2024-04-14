@@ -58,7 +58,11 @@ def handle_new_messages():
             sender = {'to': message.get('chat_id')}
             command_input = message.get('text', {}).get('body', '').strip()
 
-            if command_input.startswith("!buat "):
+            if command_input.startswith("s1 buat "):
+                xew = subprocess.run(['bot-tambah-akun',command_input[6:].title().replace(" ","")], capture_output=True, text=True)
+                sender['body'] = xew.stdout
+                endpoint = 'messages/text'
+            else if command_input.startswith("s1 pengguna"):
                 xew = subprocess.run(['bot-tambah-akun',command_input[6:].title().replace(" ","")], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
