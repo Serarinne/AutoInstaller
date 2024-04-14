@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import os
+import spur
 from dotenv import load_dotenv
 import subprocess
 
@@ -69,15 +70,18 @@ def handle_new_messages():
             elif command_input.startswith("s1 restart"):
                 subprocess.run(['reboot'])
             elif command_input.startswith("s2 buat "):
-                xew = subprocess.run(['sshpass -p  ssh  "bot-tambah-akun ',command_input[8:].title().replace(" ",""),'"'], capture_output=True, text=True)
-                sender['body'] = xew.stdout
+                shell = spur.SshShell(hostname="ip", username="usr", password="pass")
+                result = shell.run(["bot-tambah-akun",command_input[8:].title().replace(" ","")])
+                sender['body'] = result.output.decode("utf-8")
                 endpoint = 'messages/text'
             elif command_input.startswith("s2 pengguna"):
-                xew = subprocess.run(['sshpass -p  ssh  "bot-cek-pengguna"'], capture_output=True, text=True)
-                sender['body'] = xew.stdout
+                shell = spur.SshShell(hostname="ip", username="usr", password="pass")
+                result = shell.run(["bot-cek-pengguna"])
+                sender['body'] = result.output.decode("utf-8")
                 endpoint = 'messages/text'
             elif command_input.startswith("s2 restart"):
-                subprocess.run(['sshpass -p  ssh  "reboot"'])
+                shell = spur.SshShell(hostname="ip", username="usr", password="pass")
+                result = shell.run(["reboot"])
             else:
                 sender['body'] = 'Perintah salah'
                 endpoint = 'messages/text'
