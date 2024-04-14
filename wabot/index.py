@@ -62,11 +62,11 @@ def handle_new_messages():
                 xew = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ","")], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
-            else if command_input.startswith("s2 pengguna"):
+            elif command_input.startswith("s2 pengguna"):
                 xew = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
                 sender['body'] = xew.stdout
                 endpoint = 'messages/text'
-            else if command_input.startswith("s2 restart"):
+            elif command_input.startswith("s2 restart"):
                 subprocess.run(['reboot'], capture_output=True, text=True)
             else:
                 return 'Ok', 200
