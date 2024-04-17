@@ -31,7 +31,7 @@ echo ""
 echo "Please Insert DNS !"
 sleep 1
 clear
-dns
+ubah-dns
 fi
 rm /etc/resolv.conf
 touch /etc/resolv.conf
@@ -44,7 +44,7 @@ echo ""
 cat /etc/resolv.conf
 sleep 1
 clear
-dns
+ubah-dns
 ;;
 2)
 clear
@@ -55,7 +55,7 @@ echo ""
 echo "Please Insert DNS !"
 sleep 1
 clear
-dns
+ubah-dns
 fi
 rm /etc/resolv.conf
 rm /etc/resolvconf/resolv.conf.d/head
@@ -71,7 +71,7 @@ echo ""
 cat /etc/resolvconf/resolv.conf.d/head
 sleep 1
 clear
-dns
+ubah-dns
 ;;
 3)
 clear
