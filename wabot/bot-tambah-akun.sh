@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 serverDomain=$(cat /root/domain)
 serverIP=$(cat /root/serverip)
 user=$1
