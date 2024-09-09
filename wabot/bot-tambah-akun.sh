@@ -4,7 +4,7 @@ serverIP=$(cat /root/serverip)
 user=$1
 CLIENT_EXISTS=$(grep -w $user /usr/local/etc/xray/config.json | wc -l)
 Total_Akun=$(grep -c -E "^### " "/usr/local/etc/xray/config.json")
-if [[ $Total_Akun -gt 15 ]]; then
+if [[ $Total_Akun -gt 14 ]]; then
 echo "Server sudah penuh, silahkan gunakan server lain"
 else
 if [[ ${CLIENT_EXISTS} == '1' ]]; then
