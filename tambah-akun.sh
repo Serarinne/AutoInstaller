@@ -75,10 +75,10 @@ dns:
   listen: 0.0.0.0:7874
   nameserver:
     - 8.8.8.8
-    - 1.0.0.1
+    - 1.1.1.1
     - https://dns.google/dns-query
   fallback:
-    - 1.1.1.1
+    - 1.0.0.1
     - 8.8.4.4
     - https://cloudflare-dns.com/dns-query
     - 112.215.203.254
