@@ -63,7 +63,7 @@ def handle_new_messages():
 			shells2 = spur.SshShell(hostname="ip", username="usr", password="pass")
 			totals2 = shells2.run(["bot-cek-total"])
 
-			if totals1 < totals2:
+			if totals1.stdout < totals2.output.decode("utf-8"):
 				s1 = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ","")], capture_output=True, text=True)
 				sender['body'] = s1.stdout
 				endpoint = 'messages/text'
@@ -75,7 +75,7 @@ def handle_new_messages():
 			users1 = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
 			shells2 = spur.SshShell(hostname="ip", username="usr", password="pass")
 			users2 = shells2.run(["bot-cek-pengguna"])
-			sender['body'] = users1.stdout + '\n\n' + users2.output.decode("utf-8")
+			sender['body'] = users1.stdout + users2.output.decode("utf-8")
 			endpoint = 'messages/text'
 		elif command_input.startswith("s1 restart"):
 			subprocess.run(['reboot'])
