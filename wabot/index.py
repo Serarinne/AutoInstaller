@@ -63,7 +63,7 @@ def handle_new_messages():
 			shells2 = spur.SshShell(hostname="ip", username="usr", password="pass")
 			totals2 = shells2.run(["bot-cek-total"])
 
-			if totals1.stdout < totals2.output.decode("utf-8"):
+			if int(totals1.stdout) < int(totals2.output.decode("utf-8")):
 				s1 = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ","")], capture_output=True, text=True)
 				sender['body'] = s1.stdout
 				endpoint = 'messages/text'
