@@ -210,9 +210,7 @@ chmod +x /usr/local/bin/xray
 mkdir /root/.acme.sh
 curl ${serverURL}/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
-/root/.acme.sh/acme.sh --upgrade --auto-upgrade
-/root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-/root/.acme.sh/acme.sh --issue -d $serverDomain --standalone -k ec-256
+apt install certbot
 certbot certonly --standalone --preferred-challenges http --agree-tos --email serarinne@gmail.com -d $serverDomain
 sleep 1
 mkdir -p /home/vps/public_html
