@@ -397,8 +397,12 @@ cat >/etc/nginx/conf.d/xray.conf <<EOF
     server {
              listen 80;
              listen [::]:80;
+             listen 12460;
+             listen [::]:12460;
              listen 443 ssl http2 reuseport;
              listen [::]:443 http2 reuseport;
+             listen 12461 ssl http2 reuseport;
+             listen [::]:12461 http2 reuseport;
              server_name 127.0.0.1 localhost;
              ssl_certificate /etc/letsencrypt/live/vmess.seras.my.id/fullchain.pem;
              ssl_certificate_key /etc/letsencrypt/live/vmess.seras.my.id/privkey.pem;
@@ -414,7 +418,7 @@ sed -i '$ iif ($http_upgrade != "Upgrade") {' /etc/nginx/conf.d/xray.conf
 sed -i '$ irewrite /(.*) /vless-ntls break;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
-sed -i '$ iproxy_pass http://127.0.0.1:14016;' /etc/nginx/conf.d/xray.conf
+sed -i '$ iproxy_pass http://127.0.0.1:23456;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_http_version 1.1;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;' /etc/nginx/conf.d/xray.conf
@@ -508,5 +512,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 END
 fi
 service cron restart > /dev/null 2>&1
-rm install.sh
+rm install_ipv6_test.sh
 reboot
