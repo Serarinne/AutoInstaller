@@ -1,5 +1,7 @@
 #!/bin/bash
 clear
+cp /etc/resolv.conf /etc/bu-resolv.conf
+echo -e nameserver 2a01:4f8:c2c:123f::1 > /etc/resolv.conf
 if [ "${EUID}" -ne 0 ]; then
 		echo "You need to run this script as root"
 		exit 1
@@ -508,5 +510,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 END
 fi
 service cron restart > /dev/null 2>&1
+cp /etc/bu-resolv.conf /etc/resolv.conf
 rm install_ipv6_test.sh
 reboot
