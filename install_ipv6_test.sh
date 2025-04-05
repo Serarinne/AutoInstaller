@@ -212,7 +212,7 @@ curl ${serverURL}/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-/root/.acme.sh/acme.sh --issue -d $serverDomain --standalone -k ec-256
+/root/.acme.sh/acme.sh --issue -d $serverDomain --standalone -k ec-256 -listen-v6 -insecure
 ~/.acme.sh/acme.sh --installcert -d $serverDomain --fullchainpath /usr/local/etc/xray/xray.crt --keypath /usr/local/etc/xray/xray.key --ecc
 sleep 1
 mkdir -p /home/vps/public_html
