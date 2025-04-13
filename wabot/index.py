@@ -5,6 +5,7 @@ import os
 import spur
 from dotenv import load_dotenv
 import subprocess
+import uuid
 
 load_dotenv()  # Load environment variables from a .env file
 
@@ -59,23 +60,24 @@ def handle_new_messages():
 		command_input = message.get('text', {}).get('body', '').strip().lower()
 
 		if command_input.startswith("buat "):
+			myuuid = uuid.uuid4()
 			totals1 = subprocess.run(['bot-cek-total'], capture_output=True, text=True)
 			shells2 = spur.SshShell(hostname="ip", username="usr", password="pass")
 			totals2 = shells2.run(["bot-cek-total"])
 
 			if int(totals1.stdout) < int(totals2.output.decode("utf-8")):
-				s1 = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ","")], capture_output=True, text=True)
+				s1 = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ",""),str(myuuid)], capture_output=True, text=True)
+				s2 = shells2.run(["bot-tambah-akun",command_input[8:].title().replace(" ",""),str(myuuid)])
 				sender['body'] = s1.stdout
 				endpoint = 'messages/text'
 			else:
-				s2 = shells2.run(["bot-tambah-akun",command_input[8:].title().replace(" ","")])
+				s2 = shells2.run(["bot-tambah-akun",command_input[8:].title().replace(" ",""),str(myuuid)])
+				s1 = subprocess.run(['bot-tambah-akun',command_input[8:].title().replace(" ",""),str(myuuid)], capture_output=True, text=True)
 				sender['body'] = s2.output.decode("utf-8")
 				endpoint = 'messages/text'
 		elif command_input.startswith("pengguna"):
 			users1 = subprocess.run(['bot-cek-pengguna'], capture_output=True, text=True)
-			shells2 = spur.SshShell(hostname="ip", username="usr", password="pass")
-			users2 = shells2.run(["bot-cek-pengguna"])
-			sender['body'] = users1.stdout + users2.output.decode("utf-8")
+			sender['body'] = users1.stdout
 			endpoint = 'messages/text'
 		elif command_input.startswith("s1 restart"):
 			subprocess.run(['reboot'])
